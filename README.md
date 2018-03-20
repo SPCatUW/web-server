@@ -29,6 +29,7 @@ credentials used for the HTTP Basic Authentication of all /backend requests.
 If the supplied user credentials match those stored on the server, then the
 server will respond with a JSON dictionary of the following form:
 
+```
    { "username" : <username>,
      "jobs" : [[<job-number-0>, <job-filename-0>],
                [<job-number-1>, <job-filename-1>],
@@ -36,12 +37,14 @@ server will respond with a JSON dictionary of the following form:
                .
                .
                [<job-number-n>, <job-filename-n>]]}
+```
 
-<username> and <job-filename-*> are strings; <job-number-*> is a number
+<username> and <job-filename-\*> are strings; <job-number-\*> is a number
 that functions as each job's unique identifier.
 
 An example:  ;; comments preceded by semicolons
 
+```
   ;; Get user "starfighter"'s print-queue.  In addition to supplying
   ;; starfighter's username and password as GET parameters, the print
   ;; station client must supply its own username/password via HTTP
@@ -52,7 +55,7 @@ An example:  ;; comments preceded by semicolons
   
   ;; Response
   {"username" : "starfighter", "jobs" : [[0, "MLA-README"], [1, "final-paper.pdf"]]}
-
+```
 
 ### Getting actual files for the print job
 Each print job has a file associated with it that the user submitted for
@@ -70,6 +73,8 @@ will return a 403 (Forbidden) error.
 
 An example:  ;; Download the file for job number 0, user "starfighter"
 
+```
   GET /backend/file?job-number=0&username=starfighter&password=kjohnson
   ;; Credentials are correct.  Job's file will be transmitted if it exists.
   [file]
+```
